@@ -2,6 +2,7 @@ from project import db, bcrypt
 from sqlalchemy.sql import func
 from flask import current_app
 
+
 class User(db.Model):
 
     __tablename__ = 'users'

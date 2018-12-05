@@ -183,7 +183,7 @@ class TestUserService(BaseTestCase):
             self.assertIn(b'monty', response.data)
 
     def test_add_user_invalid_json_keys_no_password(self):
-        """ 
+        """
         Ensure error is thrown if the JSON object
         does not have a password key
         """
@@ -199,6 +199,7 @@ class TestUserService(BaseTestCase):
             self.assertEqual(response.status_code, 400)
             self.assertIn('Invalid payload.', data['message'])
             self.assertIn('fail', data['status'])
+
 
 if __name__ == '__main__':
     unittest.main()
