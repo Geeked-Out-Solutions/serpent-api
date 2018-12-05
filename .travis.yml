@@ -19,9 +19,13 @@ before_script:
 script:
   - docker-compose -f docker-compose-dev.yml run serpentapi python manage.py test
   - docker-compose -f docker-compose-dev.yml run serpentapi flake8 project
+  - docker-compose -f docker-compose-dev.yml run serpentapi cov
 
 after_script:
   - docker-compose -f docker-compose-dev.yml down
- 
+
+after_success:
+- coveralls 
+
 notifications:
   slack: geekedoutsolutions:VYeblffcOzRS3uktrf8HYhfM
