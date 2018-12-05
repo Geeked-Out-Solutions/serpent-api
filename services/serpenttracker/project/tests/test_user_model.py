@@ -47,5 +47,6 @@ class TestUserModel(BaseTestCase):
         user_two = add_user('justatest2', 'test@test2.com', 'greaterthaneight')
         self.assertNotEqual(user_one.password, user_two.password)
 
+
 if __name__ == '__main__':
     unittest.main()

@@ -1,5 +1,3 @@
-import datetime
-
 from project import db, bcrypt
 from sqlalchemy.sql import func
 
