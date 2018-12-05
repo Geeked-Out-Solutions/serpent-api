@@ -1,4 +1,6 @@
-# serpent-api
+# serpent-api 
+[![Build Status](https://travis-ci.com/Geeked-Out-Solutions/serpent-api.svg?token=ssEewjrKCrdk2sPPqJTU&branch=master)](https://travis-ci.com/Geeked-Out-Solutions/serpent-api)
+
 Serpent Tracker api written in Flask
 
 # Dev Setup
