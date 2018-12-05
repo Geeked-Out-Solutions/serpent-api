@@ -21,7 +21,11 @@ Test it works:
 [http://localhost/users](http://localhost/users)
 
 # Run Tests
+API:
 `docker-compose -f docker-compose-dev.yml run serpentapi python manage.py test`
+
+Client:
+`docker-compose -f docker-compose-dev.yml run client npm test`
 
 # Run Coverage
 `docker-compose -f docker-compose-dev.yml run serpentapi python manage.py cov`
@@ -31,3 +35,10 @@ Test it works:
 
 # Access PostgreSQL DB
 `docker-compose -f docker-compose-dev.yml exec users-db psql -U postgres`
+
+# Database Migrations
+Init - `docker-compose -f docker-compose-dev.yml run serpentapi python manage.py db init`
+
+Migrate - `docker-compose -f docker-compose-dev.yml run serpentapi python manage.py db migrate`
+
+Upgrade - `docker-compose -f docker-compose-dev.yml run serpentapi python manage.py db upgrade`
