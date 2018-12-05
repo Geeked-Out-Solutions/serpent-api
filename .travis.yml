@@ -22,3 +22,6 @@ script:
 
 after_script:
   - docker-compose -f docker-compose-dev.yml down
+ 
+notifications:
+  slack: geekedoutsolutions:VYeblffcOzRS3uktrf8HYhfM
