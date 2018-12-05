@@ -6,8 +6,8 @@ from project.api.models import User
 from project.tests.base import BaseTestCase
 
 
-def add_user(username, email):
-    user = User(username=username, email=email)
+def add_user(username, email, password):
+    user = User(username=username, email=email, password=password)
     db.session.add(user)
     db.session.commit()
     return user
@@ -31,7 +31,8 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'monty',
-                    'email': 'monty@python.org'
+                    'email': 'monty@python.org',
+                    'password': 'greaterthaneight'
                 }),
                 content_type='application/json',
             )
@@ -60,7 +61,7 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/users',
-                data=json.dumps({'email': 'monty@python.org'}),
+                data=json.dumps({'email': 'monty@python.org', 'password': 'test'}),
                 content_type='application/json',
             )
             data = json.loads(response.data.decode())
@@ -75,7 +76,8 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'monty',
-                    'email': 'monty@python.org'
+                    'email': 'monty@python.org',
+                    'password': 'greaterthaneight'
                 }),
                 content_type='application/json',
             )
@@ -83,7 +85,8 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'monty',
-                    'email': 'monty@python.org'
+                    'email': 'monty@python.org',
+                    'password': 'greaterthaneight'
                 }),
                 content_type='application/json',
             )
@@ -95,7 +98,7 @@ class TestUserService(BaseTestCase):
 
     def test_single_user(self):
         """Ensure get single user behaves correctly."""
-        user = add_user('monty', 'monty@python.org')
+        user = add_user('monty', 'monty@python.org', 'greaterthaneight')
         with self.client:
             response = self.client.get(f'/users/{user.id}')
             data = json.loads(response.data.decode())
@@ -124,8 +127,8 @@ class TestUserService(BaseTestCase):
 
     def test_all_users(self):
         """Ensure get all users behaves correctly."""
-        add_user('monty', 'monty@python.org')
-        add_user('vader', 'vader@starwarz.com')
+        add_user('monty', 'monty@python.org', 'greaterthaneight')
+        add_user('vader', 'vader@starwarz.com', 'greaterthaneight')
         with self.client:
             response = self.client.get('/users')
             data = json.loads(response.data.decode())
@@ -150,8 +153,8 @@ class TestUserService(BaseTestCase):
     def test_main_with_users(self):
         """Ensure the main route behaves correctly when users have been
         added to the database."""
-        add_user('monty', 'monty@python.org')
-        add_user('vader', 'vader@starwarz.com')
+        add_user('monty', 'monty@python.org', 'greaterthaneight')
+        add_user('vader', 'vader@starwarz.com', 'greaterthaneight')
         with self.client:
             response = self.client.get('/')
             self.assertEqual(response.status_code, 200)
@@ -165,7 +168,7 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/',
-                data=dict(username='monty', email='monty@python.com'),
+                data=dict(username='monty', email='monty@python.com', password='greaterthaneight'),
                 follow_redirects=True
             )
             self.assertEqual(response.status_code, 200)
