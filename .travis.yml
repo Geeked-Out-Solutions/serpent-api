@@ -11,7 +11,6 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-  - pip install codecov
 
 before_script:
   - export REACT_APP_SERPENT_SERVICE_URL=http://127.0.0.1
@@ -26,7 +25,7 @@ after_script:
   - docker-compose -f docker-compose-dev.yml down
 
 after_success:
- - codecov
+ - curl -s https://codecov.io/bash | bash
 
 notifications:
   slack: geekedoutsolutions:VYeblffcOzRS3uktrf8HYhfM
