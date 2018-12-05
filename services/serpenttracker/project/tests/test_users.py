@@ -122,7 +122,6 @@ class TestUserService(BaseTestCase):
             self.assertIn('User does not exist', data['message'])
             self.assertIn('fail', data['status'])
 
-
     def test_all_users(self):
         """Ensure get all users behaves correctly."""
         add_user('monty', 'monty@python.org')
@@ -173,6 +172,7 @@ class TestUserService(BaseTestCase):
             self.assertIn(b'All Users', response.data)
             self.assertNotIn(b'<p>No users!</p>', response.data)
             self.assertIn(b'monty', response.data)
+
 
 if __name__ == '__main__':
     unittest.main()

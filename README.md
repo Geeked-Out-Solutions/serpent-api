@@ -21,5 +21,11 @@ Test it works:
 # Run Tests
 `docker-compose -f docker-compose-dev.yml run serpentapi python manage.py test`
 
+# Run Coverage
+`docker-compose -f docker-compose-dev.yml run serpentapi python manage.py cov`
+
+# Lint Project
+`docker-compose -f docker-compose-dev.yml run serpentapi flake8 project`
+
 # Access PostgreSQL DB
 `docker-compose -f docker-compose-dev.yml exec users-db psql -U postgres`

@@ -4,7 +4,7 @@ services:
 
   serpentapi:
     build:
-      context: ./services/users
+      context: ./services/serpenttracker
       dockerfile: Dockerfile-prod
     expose:
       - 5000
@@ -18,7 +18,7 @@ services:
 
   users-db:
     build:
-      context: ./services/users/project/db
+      context: ./services/serpenttracker/project/db
       dockerfile: Dockerfile
     ports:
       - 5435:5432

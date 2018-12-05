@@ -4,10 +4,10 @@ services:
 
   serpentapi:
     build:
-      context: ./services/users
+      context: ./services/serpenttracker
       dockerfile: Dockerfile-dev
     volumes:
-      - './services/users:/usr/src/app'
+      - './services/serpenttracker:/usr/src/app'
     ports:
       - 5001:5000
     environment:
@@ -20,7 +20,7 @@ services:
 
   users-db:
     build:
-      context: ./services/users/project/db
+      context: ./services/serpenttracker/project/db
       dockerfile: Dockerfile
     ports:
       - 5435:5432
