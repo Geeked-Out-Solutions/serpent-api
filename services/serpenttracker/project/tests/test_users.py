@@ -182,6 +182,23 @@ class TestUserService(BaseTestCase):
             self.assertNotIn(b'<p>No users!</p>', response.data)
             self.assertIn(b'monty', response.data)
 
+    def test_add_user_invalid_json_keys_no_password(self):
+        """ 
+        Ensure error is thrown if the JSON object
+        does not have a password key
+        """
+        with self.client:
+            response = self.client.post(
+                '/users',
+                data=json.dumps(dict(
+                    username='monty',
+                    email='monty@python.com')),
+                content_type='application/json'
+            )
+            data = json.loads(response.data.decode())
+            self.assertEqual(response.status_code, 400)
+            self.assertIn('Invalid payload.', data['message'])
+            self.assertIn('fail', data['status'])
 
 if __name__ == '__main__':
     unittest.main()

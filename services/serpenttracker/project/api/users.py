@@ -14,7 +14,8 @@ def index():
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
-        db.session.add(User(username=username, email=email, password=password))
+        db.session.add(User(
+            username=username, email=email, password=password))
         db.session.commit()
     users = User.query.all()
     return render_template('index.html', users=users)
@@ -52,7 +53,7 @@ def add_user():
         else:
             response_object['message'] = 'Sorry. That email already exists.'
             return jsonify(response_object), 400
-    except exc.IntegrityError as e:  # noqa: F841
+    except (exc.IntegrityError, ValueError) as e:  # noqa: F841
         db.session.rollback()
         return jsonify(response_object), 400
 
