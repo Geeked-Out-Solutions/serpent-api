@@ -25,7 +25,7 @@ after_script:
   - docker-compose -f docker-compose-dev.yml down
 
 after_success:
-- coveralls 
+ - codecov
 
 notifications:
   slack: geekedoutsolutions:VYeblffcOzRS3uktrf8HYhfM
