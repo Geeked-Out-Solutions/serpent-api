@@ -42,6 +42,7 @@ class TestTestingConfig(TestCase):
         )
         self.assertFalse(app.config['DEBUG_TB_ENABLED'])
 
+
 class TestProductionConfig(TestCase):
     def create_app(self):
         app.config.from_object('project.config.ProductionConfig')
