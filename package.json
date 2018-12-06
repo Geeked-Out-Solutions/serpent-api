@@ -1,0 +1,6 @@
+{
+    "name": "serpent-tracker",
+    "devDependencies": {
+        "cypress": "^3.0.1"
+    }
+}
