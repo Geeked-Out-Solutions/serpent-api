@@ -10,9 +10,11 @@ exports[`AddUser renders a snapshot properly 1`] = `
     <input
       className="input is-large"
       name="username"
+      onChange={undefined}
       placeholder="Enter a username"
       required={true}
       type="text"
+      value={undefined}
     />
   </div>
   <div
@@ -21,9 +23,11 @@ exports[`AddUser renders a snapshot properly 1`] = `
     <input
       className="input is-large"
       name="email"
+      onChange={undefined}
       placeholder="Enter an email address"
       required={true}
       type="email"
+      value={undefined}
     />
   </div>
   <input

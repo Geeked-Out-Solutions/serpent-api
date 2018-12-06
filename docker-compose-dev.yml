@@ -4,24 +4,24 @@ services:
 
   serpentapi:
     build:
-      context: ./services/serpenttracker
+      context: ./services/serpentapi
       dockerfile: Dockerfile-dev
     volumes:
-      - './services/serpenttracker:/usr/src/app'
+      - './services/serpentapi:/usr/src/app'
     ports:
       - 5001:5000
     environment:
       - FLASK_ENV=development
       - APP_SETTINGS=project.config.DevelopmentConfig
-      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_dev
-      - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/users_test
+      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/serpentapi_dev
+      - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/serpentapi_test
       - SECRET_KEY=serpent_key
     depends_on:
       - users-db
 
   users-db:
     build:
-      context: ./services/serpenttracker/project/db
+      context: ./services/serpentapi/project/db
       dockerfile: Dockerfile
     ports:
       - 5435:5432
