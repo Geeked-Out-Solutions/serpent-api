@@ -14,6 +14,8 @@ docker-compose -f docker-compose-dev.yml run serpentapi python manage.py test
 inspect $? serpentapi
 docker-compose -f docker-compose-dev.yml run serpentapi flake8 project
 inspect $? serpentapi-lint
+docker-compose -f docker-compose-dev.yml run serpentapi python manage.py cov
+inspect $? serpentapi-cov
 docker-compose -f docker-compose-dev.yml run client npm test -- --coverage
 inspect $? client
 docker-compose -f docker-compose-dev.yml down
