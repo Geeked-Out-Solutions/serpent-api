@@ -8,7 +8,7 @@ import App from '../../App';
 beforeAll(() => {
   global.localStorage = {
     getItem: () => 'someToken'
-  };
+   };
 });
 
 test('App renders without crashing', () => {
