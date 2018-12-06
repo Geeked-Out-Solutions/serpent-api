@@ -1,9 +1,12 @@
 # serpent-api 
 [![Build Status](https://travis-ci.com/Geeked-Out-Solutions/serpent-api.svg?token=ssEewjrKCrdk2sPPqJTU&branch=master)](https://travis-ci.com/Geeked-Out-Solutions/serpent-api)
 
+<<<<<<< HEAD
 ![Coverage Status](https://codecov.io/gh/Geeked-Out-Solutions/serpent-api/branch/master/services/serpenttracker/project/graph/badge.svg)
 
 
+=======
+>>>>>>> 06f6845e764e01d89b53c136b8a1afd1c3370901
 Serpent Tracker api written in Flask db uses Postgres
 
 # Dev Setup
@@ -45,6 +48,7 @@ Init - `docker-compose -f docker-compose-dev.yml run serpentapi python manage.py
 Migrate - `docker-compose -f docker-compose-dev.yml run serpentapi python manage.py db migrate`
 
 Upgrade - `docker-compose -f docker-compose-dev.yml run serpentapi python manage.py db upgrade`
+
 
 # Prod Setup
 You need to have AWS creds setup in the ~/.aws/credentials file similar to below:
@@ -112,3 +116,4 @@ Ensure port 80 is allowed in the AWS security group for this container via the A
 Get the IP of the machine - `docker-machine ip serpenttracker-prod`
 
 Now visit [http://docker-machine-ip] and see application.
+
