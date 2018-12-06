@@ -8,7 +8,7 @@ Serpent Tracker api written in Flask db uses Postgres
 # Dev Setup
 Ensure you have docker installed and run the following:
 
-`docker-compose -f docker-compose-dev.yml up --build`
+`docker-compose -f docker-compose-dev.yml up -d --build`
 
 Setup the db:
 
