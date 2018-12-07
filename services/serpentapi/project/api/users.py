@@ -2,7 +2,7 @@
 
 
 from sqlalchemy import exc
-from flask import Blueprint, jsonify, request, render_template
+from flask import Blueprint, jsonify, request
 
 from project.api.models import User
 from project import db
@@ -12,28 +12,20 @@ from project.api.utils import authenticate, is_admin
 users_blueprint = Blueprint('users', __name__, template_folder='./templates')
 
 
-@users_blueprint.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        username = request.form['username']
-        email = request.form['email']
-        password = request.form['password']
-        db.session.add(User(
-            username=username, email=email, password=password))
-        db.session.commit()
-    users = User.query.all()
-    return render_template('index.html', users=users)
+# @users_blueprint.route('/api/users', methods=['GET', 'POST'])
+# def index():
+#     if request.method == 'POST':
+#         username = request.form['username']
+#         email = request.form['email']
+#         password = request.form['password']
+#         db.session.add(User(
+#             username=username, email=email, password=password))
+#         db.session.commit()
+#     users = User.query.all()
+#     return render_template('index.html', users=users)
 
 
-@users_blueprint.route('/users/ping', methods=['GET'])
-def ping_pong():
-    return jsonify({
-        'status': 'success',
-        'message': 'pong!'
-    })
-
-
-@users_blueprint.route('/users', methods=['POST'])
+@users_blueprint.route('/api/users/add', methods=['POST'])
 @authenticate
 def add_user(resp):
     post_data = request.get_json()
@@ -67,7 +59,7 @@ def add_user(resp):
         return jsonify(response_object), 400
 
 
-@users_blueprint.route('/users/<user_id>', methods=['GET'])
+@users_blueprint.route('/api/users/<user_id>', methods=['GET'])
 def get_single_user(user_id):
     """Get single user details"""
     response_object = {
@@ -93,7 +85,7 @@ def get_single_user(user_id):
         return jsonify(response_object), 404
 
 
-@users_blueprint.route('/users', methods=['GET'])
+@users_blueprint.route('/api/users', methods=['GET'])
 def get_all_users():
     """Get all users"""
     response_object = {
