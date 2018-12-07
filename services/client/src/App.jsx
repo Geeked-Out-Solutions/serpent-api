@@ -16,7 +16,7 @@ class App extends Component {
     super();
     this.state = {
       users: [],
-      title: 'TestDriven.io',
+      title: 'Serpent Tracker',
       isAuthenticated: false,
       messageName: null,
       messageType: null,
@@ -35,7 +35,7 @@ class App extends Component {
     this.getUsers();
   };
   getUsers() {
-    axios.get(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`)
+    axios.get(`${process.env.REACT_APP_SERPENT_SERVICE_URL}/users`)
     .then((res) => { this.setState({ users: res.data.data.users }); })
     .catch((err) => { });
   };

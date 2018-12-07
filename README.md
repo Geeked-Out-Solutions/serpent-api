@@ -94,7 +94,7 @@ Get the docker machine ip:
 
 Use this ip in the export below replacing DOCKER_MACHINE_IP:
 
-`export REACT_APP_USERS_SERVICE_URL=http://DOCKER_MACHINE_IP`
+`export REACT_APP_SERPENT_SERVICE_URL=http://DOCKER_MACHINE_IP`
 
 # Start Up Docker Container
 This command will spin up our application on the docker host:

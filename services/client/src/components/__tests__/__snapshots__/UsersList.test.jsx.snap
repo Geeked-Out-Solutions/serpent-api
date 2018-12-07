@@ -40,7 +40,7 @@ exports[`UsersList renders a snapshot properly 1`] = `
           hermanmu@gmail.com
         </td>
         <td>
-          michael
+          monty
         </td>
         <td>
           true
@@ -54,10 +54,10 @@ exports[`UsersList renders a snapshot properly 1`] = `
           2
         </td>
         <td>
-          michael@mherman.org
+          monty@mherman.org
         </td>
         <td>
-          michaelherman
+          vader
         </td>
         <td>
           true

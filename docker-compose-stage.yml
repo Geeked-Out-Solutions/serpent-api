@@ -5,15 +5,15 @@ services:
   serpentapi:
     build:
       context: ./services/serpentapi
-      dockerfile: Dockerfile-prod
+      dockerfile: Dockerfile-stage
     expose:
       - 5000
     environment:
       - FLASK_ENV=production
-      - APP_SETTINGS=project.config.ProductionConfig
-      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/serpentapi_prod
+      - APP_SETTINGS=project.config.StagingConfig
+      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/serpentapi_stage
       - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/serpentapi_test
-      - SECRET_KEY=${SECRET_KEY}
+      - SECRET_KEY=serpent_key
     depends_on:
       - users-db
 
@@ -31,7 +31,7 @@ services:
     container_name: client
     build:
       context: ./services/client
-      dockerfile: Dockerfile-prod
+      dockerfile: Dockerfile-stage
       args:
         - NODE_ENV=production
         - REACT_APP_SERPENT_SERVICE_URL=${REACT_APP_SERPENT_SERVICE_URL}
@@ -40,24 +40,24 @@ services:
     depends_on:
       - serpentapi
 
-  nginx:
-    build:
-      context: ./services/nginx
-      dockerfile: Dockerfile-prod
-    restart: always
-    ports:
-      - 80:80
-    depends_on:
-      - serpentapi
-      - client
-
   swagger:
     build:
       context: ./services/swagger
-      dockerfile: Dockerfile-prod
+      dockerfile: Dockerfile-stage
     expose:
       - 8080
     environment:
       - URL=swagger.json
     depends_on:
       - serpentapi
+
+  nginx:
+    build:
+      context: ./services/nginx
+      dockerfile: Dockerfile-stage
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - serpentapi
+      - client

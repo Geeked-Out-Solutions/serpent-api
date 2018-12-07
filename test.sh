@@ -32,11 +32,11 @@ client() {
 
 # run e2e tests
 e2e() {
-  docker-compose -f docker-compose-prod.yml up -d --build
-  docker-compose -f docker-compose-prod.yml run serpentapi python manage.py recreate-db
+  docker-compose -f docker-compose-dev.yml up -d --build
+  docker-compose -f docker-compose-dev.yml run serpentapi python manage.py recreate-db
   ./node_modules/.bin/cypress run --config baseUrl=http://localhost
   inspect $? e2e
-  docker-compose -f docker-compose-prod.yml down
+  docker-compose -f docker-compose-dev.yml down
 }
 
 # run all tests

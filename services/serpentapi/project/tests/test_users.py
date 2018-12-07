@@ -42,7 +42,7 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'monty',
-                    'email': 'montypython.org',
+                    'email': 'monty@mherman.org',
                     'password': 'holygrail'
                 }),
                 content_type='application/json',
@@ -50,7 +50,7 @@ class TestUserService(BaseTestCase):
             )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 201)
-            self.assertIn('montypython.org was added!', data['message'])
+            self.assertIn('monty@mherman.org was added!', data['message'])
             self.assertIn('success', data['status'])
 
     def test_add_user_invalid_json(self):
@@ -132,7 +132,7 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'monty',
-                    'email': 'montypython.org',
+                    'email': 'monty@mherman.org',
                     'password': 'holygrail'
                 }),
                 content_type='application/json',
@@ -142,7 +142,7 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'monty',
-                    'email': 'montypython.org'
+                    'email': 'monty@mherman.org'
                 }),
                 content_type='application/json',
                 headers={'Authorization': f'Bearer {token}'}
@@ -155,13 +155,13 @@ class TestUserService(BaseTestCase):
 
     def test_single_user(self):
         """Ensure get single user behaves correctly."""
-        user = add_user('monty', 'montypython.org', 'holygrail')
+        user = add_user('monty', 'monty@mherman.org', 'holygrail')
         with self.client:
             response = self.client.get(f'/users/{user.id}')
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 200)
             self.assertIn('monty', data['data']['username'])
-            self.assertIn('montypython.org', data['data']['email'])
+            self.assertIn('monty@mherman.org', data['data']['email'])
             self.assertIn('success', data['status'])
 
     def test_single_user_no_id(self):
@@ -184,7 +184,7 @@ class TestUserService(BaseTestCase):
 
     def test_all_users(self):
         """Ensure get all users behaves correctly."""
-        add_user('monty', 'montypython.org', 'holygrail')
+        add_user('monty', 'monty@mherman.org', 'holygrail')
         add_user('fletcher', 'fletcher@notreal.com', 'holygrail')
         with self.client:
             response = self.client.get('/users')
@@ -193,14 +193,14 @@ class TestUserService(BaseTestCase):
             self.assertEqual(len(data['data']['users']), 2)
             self.assertIn('monty', data['data']['users'][0]['username'])
             self.assertIn(
-                'montypython.org', data['data']['users'][0]['email'])
-            self.assertTrue(data['data']['users'][0]['active'])
-            self.assertFalse(data['data']['users'][0]['admin'])
+                'monty@mherman.org', data['data']['users'][0]['email'])
+            self.assertTrue(data['data']['users'][0]['active'])  # new
+            self.assertFalse(data['data']['users'][0]['admin'])  # new
             self.assertIn('fletcher', data['data']['users'][1]['username'])
             self.assertIn(
                 'fletcher@notreal.com', data['data']['users'][1]['email'])
-            self.assertTrue(data['data']['users'][1]['active'])
-            self.assertFalse(data['data']['users'][1]['admin'])
+            self.assertTrue(data['data']['users'][1]['active'])  # new
+            self.assertFalse(data['data']['users'][1]['admin'])  # new
             self.assertIn('success', data['status'])
 
     def test_main_no_users(self):
@@ -214,7 +214,7 @@ class TestUserService(BaseTestCase):
     def test_main_with_users(self):
         """Ensure the main route behaves correctly when users have been
         added to the database."""
-        add_user('monty', 'montypython.org', 'holygrail')
+        add_user('monty', 'monty@mherman.org', 'holygrail')
         add_user('fletcher', 'fletcher@notreal.com', 'holygrail')
         with self.client:
             response = self.client.get('/')

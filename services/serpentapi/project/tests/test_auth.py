@@ -238,7 +238,7 @@ class TestAuthBlueprint(BaseTestCase):
             self.assertTrue(data['data']['username'] == 'test')
             self.assertTrue(data['data']['email'] == 'test@test.com')
             self.assertTrue(data['data']['active'])
-            self.assertFalse(data['data']['admin'])
+            self.assertFalse(data['data']['admin'])  # new
             self.assertEqual(response.status_code, 200)
 
     def test_invalid_status(self):
@@ -254,6 +254,7 @@ class TestAuthBlueprint(BaseTestCase):
 
     def test_invalid_logout_inactive(self):
         add_user('test', 'test@test.com', 'test')
+        # update user
         user = User.query.filter_by(email='test@test.com').first()
         user.active = False
         db.session.commit()
@@ -278,6 +279,7 @@ class TestAuthBlueprint(BaseTestCase):
 
     def test_invalid_status_inactive(self):
         add_user('test', 'test@test.com', 'test')
+        # update user
         user = User.query.filter_by(email='test@test.com').first()
         user.active = False
         db.session.commit()
