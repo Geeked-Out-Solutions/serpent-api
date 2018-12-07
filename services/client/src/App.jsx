@@ -35,7 +35,7 @@ class App extends Component {
     this.getUsers();
   };
   getUsers() {
-    axios.get(`${process.env.REACT_APP_SERPENT_SERVICE_URL}/users`)
+    axios.get(`${process.env.REACT_APP_SERPENT_SERVICE_URL}/api/users`)
     .then((res) => { this.setState({ users: res.data.data.users }); })
     .catch((err) => { });
   };

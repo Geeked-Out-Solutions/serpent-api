@@ -129,8 +129,8 @@ class Form extends Component {
     if (this.props.isAuthenticated) {
       return <Redirect to='/' />;
     };
-    let formRules = this.state.loginFormRules;  // new
-    // new
+    let formRules = this.state.loginFormRules;
+    
     if (this.props.formType === 'Register') {
       formRules = this.state.registerFormRules;
     }
@@ -138,7 +138,7 @@ class Form extends Component {
       <div>
         <h1 className="title is-1">{this.props.formType}</h1>
         <hr/><br/>
-        {/* new */}
+        
         <FormErrors
           formType={this.props.formType}
           formRules={formRules}

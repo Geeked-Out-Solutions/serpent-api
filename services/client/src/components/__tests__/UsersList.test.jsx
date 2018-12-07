@@ -8,14 +8,14 @@ const users = [
   {
     'active': true,
     'admin': false,
-    'email': 'hermanmu@gmail.com',
+    'email': 'monty@gmail.com',
     'id': 1,
     'username': 'monty'
   },
   {
     'active': true,
     'admin': false,
-    'email': 'monty@mherman.org',
+    'email': 'vader@starwarz.org',
     'id': 2,
     'username': 'vader'
   }
