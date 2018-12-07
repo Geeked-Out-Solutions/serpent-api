@@ -45,6 +45,18 @@ Migrate - `docker-compose -f docker-compose-dev.yml run serpentapi python manage
 
 Upgrade - `docker-compose -f docker-compose-dev.yml run serpentapi python manage.py db upgrade`
 
+# Staging Setup
+1. Setup env for the staging docker-machine:
+
+`eval $(docker-machine env serpenttracker-stage)`
+
+2. Setup env variables:
+
+`export REACT_APP_USERS_SERVICE_URL=http://DOCKER_MACHINE_STAGING_IP`
+
+3. Spin up staging:
+
+`docker-compose -f docker-compose-stage.yml up -d --build`
 
 # Prod Setup
 You need to have AWS creds setup in the ~/.aws/credentials file similar to below:

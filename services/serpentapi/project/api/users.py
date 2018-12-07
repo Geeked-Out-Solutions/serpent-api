@@ -25,7 +25,7 @@ users_blueprint = Blueprint('users', __name__, template_folder='./templates')
 #     return render_template('index.html', users=users)
 
 
-@users_blueprint.route('/api/users/add', methods=['POST'])
+@users_blueprint.route('/api/users', methods=['POST'])
 @authenticate
 def add_user(resp):
     post_data = request.get_json()
