@@ -29,6 +29,30 @@
                   "description": "user object"
                 }
               }
+            },
+            "post": {
+              "summary": "Adds a new user",
+              "requestBody": {
+                "description": "User to add",
+                "required": true,
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/user-full"
+                    }
+                  }
+                }
+              },
+              "security": [
+                {
+                  "bearerAuth": []
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "User added"
+                }
+              }
             }
           },
           "/api/users/{id}":{
@@ -94,9 +118,30 @@
                 }
               }
             }
+          },
+          "/auth/status": {
+            "get": {
+              "summary": "Returns the logged in user's status",
+              "security": [
+                {
+                  "bearerAuth": []
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "user object"
+                }
+              }
+            }
           }
     },
     "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer"
+        }
+      },
       "schemas": {
         "user": {
           "properties": {
