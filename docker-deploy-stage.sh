@@ -24,13 +24,12 @@ then
       fi
     }
 
-    # # new
-    # update_service() {
-    #   if [[ $(aws ecs update-service --cluster $cluster --service $service --task-definition $revision | $JQ '.service.taskDefinition') != $revision ]]; then
-    #     echo "Error updating service."
-    #     return 1
-    #   fi
-    # }
+    update_service() {
+      if [[ $(aws ecs update-service --cluster $cluster --service $service --task-definition $revision | $JQ '.service.taskDefinition') != $revision ]]; then
+        echo "Error updating service."
+        return 1
+      fi
+    }
 
     deploy_cluster() {
 
@@ -44,7 +43,7 @@ then
       task_def=$(printf "$task_template" $AWS_ACCOUNT_ID $AWS_ACCOUNT_ID)
       echo "$task_def"
       register_definition
-    #   update_service
+      update_service
 
       # client
       service="serpent-tracker-client-stage-service"
@@ -53,7 +52,7 @@ then
       task_def=$(printf "$task_template" $AWS_ACCOUNT_ID)
       echo "$task_def"
       register_definition
-    #   update_service
+      update_service
 
       # swagger
       service="serpenttracker-swagger-stage-service"
@@ -62,7 +61,7 @@ then
       task_def=$(printf "$task_template" $AWS_ACCOUNT_ID)
       echo "$task_def"
       register_definition
-    #   update_service
+      update_service
 
     }
 
