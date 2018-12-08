@@ -5,6 +5,17 @@ services:
 
 env:
   DOCKER_COMPOSE_VERSION: 1.21.1
+  COMMIT: ${TRAVIS_COMMIT::8}
+  MAIN_REPO: https://github.com/Geeked-Out-Solutions/serpent-api.git
+  SERPENTAPI: serpent-tracker-serpentapi
+  SERPENTAPI_REPO: ${MAIN_REPO}#${TRAVIS_BRANCH}:services/serpentapi
+  SERPENTAPI_DB: serpent-tracker-serpentapi_db
+  SERPENTAPI_DB_REPO: ${MAIN_REPO}#${TRAVIS_BRANCH}:services/serpentapi/project/db
+  CLIENT: serpent-tracker-client
+  CLIENT_REPO: ${MAIN_REPO}#${TRAVIS_BRANCH}:services/client
+  SWAGGER: serpent-tracker-swagger
+  SWAGGER_REPO: ${MAIN_REPO}#${TRAVIS_BRANCH}:services/swagger
+  SECRET_KEY: serpent_key
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
@@ -21,6 +32,7 @@ script:
 
 after_success:
  - curl -s https://codecov.io/bash | bash
+ - bash ./docker-push.sh
 
 notifications:
   slack: geekedoutsolutions:VYeblffcOzRS3uktrf8HYhfM

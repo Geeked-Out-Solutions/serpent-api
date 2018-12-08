@@ -15,9 +15,9 @@ services:
       - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/serpentapi_test
       - SECRET_KEY=${SECRET_KEY}
     depends_on:
-      - users-db
+      - serpentapi-db
 
-  users-db:
+  serpentapi-db:
     build:
       context: ./services/serpentapi/project/db
       dockerfile: Dockerfile
