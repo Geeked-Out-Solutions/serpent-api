@@ -11,8 +11,8 @@ services:
     environment:
       - FLASK_ENV=production
       - APP_SETTINGS=project.config.StagingConfig
-      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/serpentapi_stage
-      - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/serpentapi_test
+      - DATABASE_URL=postgres://postgres:postgres@serpentapi-db:5432/serpentapi_stage
+      - DATABASE_TEST_URL=postgres://postgres:postgres@serpentapi-db:5432/serpentapi_test
       - SECRET_KEY=serpent_key
     depends_on:
       - serpentapi-db

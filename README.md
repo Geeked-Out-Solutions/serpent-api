@@ -36,7 +36,7 @@ Client:
 `docker-compose -f docker-compose-dev.yml run serpentapi flake8 project`
 
 ## Access PostgreSQL DB
-`docker-compose -f docker-compose-dev.yml exec users-db psql -U postgres`
+`docker-compose -f docker-compose-dev.yml exec serpentapi-db psql -U postgres`
 
 ## Database Migrations
 Init - `docker-compose -f docker-compose-dev.yml run serpentapi python manage.py db init`
