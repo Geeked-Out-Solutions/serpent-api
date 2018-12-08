@@ -5,12 +5,12 @@ then
 
   if [[ "$TRAVIS_BRANCH" == "staging" ]]; then
     export DOCKER_ENV=stage
-    export REACT_APP_USERS_SERVICE_URL="http://serpenttracker-staging-alb-155647854.us-east-1.elb.amazonaws.com"
+    export REACT_APP_SERPENT_SERVICE_URL="http://serpenttracker-staging-alb-155647854.us-east-1.elb.amazonaws.com"
   elif [[ "$TRAVIS_BRANCH" == "production" ]]; then
     export DOCKER_ENV=prod
-    export REACT_APP_USERS_SERVICE_URL="http://serpenttracker-staging-alb-155647854.us-east-1.elb.amazonaws.com"
-    # export DATABASE_URL="$AWS_RDS_URI"
-    # export SECRET_KEY="$PRODUCTION_SECRET_KEY"
+    export REACT_APP_SERPENT_SERVICE_URL="http://serpenttracker-production-alb-2055409767.us-east-1.elb.amazonaws.com"
+    export DATABASE_URL="$AWS_RDS_URI"
+    export SECRET_KEY="$PRODUCTION_SECRET_KEY"
   fi
 
   if [ "$TRAVIS_BRANCH" == "staging" ] || \

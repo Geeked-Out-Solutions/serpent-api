@@ -1,0 +1,44 @@
+{
+    "containerDefinitions": [
+      {
+        "name": "serpentapi",
+        "image": "%s.dkr.ecr.us-east-1.amazonaws.com/serpent-tracker-serpentapi:production",
+        "essential": true,
+        "memoryReservation": 300,
+        "portMappings": [
+          {
+            "hostPort": 0,
+            "protocol": "tcp",
+            "containerPort": 5000
+          }
+        ],
+        "environment": [
+          {
+            "name": "APP_SETTINGS",
+            "value": "project.config.ProductionConfig"
+          },
+          {
+            "name": "DATABASE_TEST_URL",
+            "value": "postgres://postgres:postgres@serpentapi-db:5432/serpentapi_test"
+          },
+          {
+            "name": "DATABASE_URL",
+            "value": "%s"
+          },
+          {
+            "name": "SECRET_KEY",
+            "value": "%s"
+          }
+        ],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "serpenttracker-api-prod",
+            "awslogs-region": "us-east-1"
+          }
+        }
+      }
+    ],
+    "family": "serpenttracker-api-prod-td"
+  }
+  

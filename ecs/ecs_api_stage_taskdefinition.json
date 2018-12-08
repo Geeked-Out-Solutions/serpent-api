@@ -1,0 +1,77 @@
+{
+    "containerDefinitions": [
+      {
+        "name": "api",
+        "image": "%s.dkr.ecr.us-east-1.amazonaws.com/serpent-tracker-serpentapi:staging",
+        "essential": true,
+        "memoryReservation": 300,
+        "portMappings": [
+          {
+            "hostPort": 0,
+            "protocol": "tcp",
+            "containerPort": 5000
+          }
+        ],
+        "environment": [
+          {
+            "name": "APP_SETTINGS",
+            "value": "project.config.StagingConfig"
+          },
+          {
+            "name": "DATABASE_TEST_URL",
+            "value": "postgres://postgres:postgres@serpentapi-db:5432/serpentapi_test"
+          },
+          {
+            "name": "DATABASE_URL",
+            "value": "postgres://postgres:postgres@serpentapi-db:5432/serpentapi_stage"
+          },
+          {
+            "name": "SECRET_KEY",
+            "value": "serpent_tracker"
+          }
+        ],
+        "links": [
+          "serpentapi-db"
+        ],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "serpenttracker-api-stage",
+            "awslogs-region": "us-east-1"
+          }
+        }
+      },
+      {
+        "name": "serpentapi-db",
+        "image": "%s.dkr.ecr.us-east-1.amazonaws.com/serpent-tracker-serpentapi_db:staging",
+        "essential": true,
+        "memoryReservation": 300,
+        "portMappings": [
+          {
+            "hostPort": 0,
+            "protocol": "tcp",
+            "containerPort": 5432
+          }
+        ],
+        "environment": [
+          {
+            "name": "POSTGRES_PASSWORD",
+            "value": "postgres"
+          },
+          {
+            "name": "POSTGRES_USER",
+            "value": "postgres"
+          }
+        ],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "serpenttracker-serpentapi_db-stage",
+            "awslogs-region": "us-east-1"
+          }
+        }
+      }
+    ],
+    "family": "serpenttracker-api-stage-td"
+  }
+  

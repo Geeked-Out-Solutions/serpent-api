@@ -1,0 +1,33 @@
+{
+    "containerDefinitions": [
+      {
+        "name": "swagger",
+        "image": "%s.dkr.ecr.us-east-1.amazonaws.com/serpent-tracker-swagger:production",
+        "essential": true,
+  
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "serpenttracker-swagger-prod",
+            "awslogs-region": "us-east-1"
+          }
+        },
+        "portMappings": [
+          {
+            "hostPort": 0,
+            "protocol": "tcp",
+            "containerPort": 8080
+          }
+        ],
+        "environment": [
+          {
+            "name": "URL",
+            "value": "swagger.json"
+          }
+        ],
+        "memoryReservation": 300
+      }
+    ],
+    "family": "serpenttracker-swagger-prod-td"
+  }
+  

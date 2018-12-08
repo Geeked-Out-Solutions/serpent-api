@@ -33,6 +33,8 @@ script:
 after_success:
  - curl -s https://codecov.io/bash | bash
  - bash ./docker-push.sh
+ - bash ./docker-deploy-stage.sh
+ - bash ./docker-deploy-prod.sh
 
 notifications:
   slack: geekedoutsolutions:VYeblffcOzRS3uktrf8HYhfM
