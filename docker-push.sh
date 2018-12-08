@@ -5,10 +5,10 @@ then
 
   if [[ "$TRAVIS_BRANCH" == "staging" ]]; then
     export DOCKER_ENV=stage
-    # export REACT_APP_USERS_SERVICE_URL="http://testdriven-staging-alb-2120066943.us-east-1.elb.amazonaws.com"
+    export REACT_APP_USERS_SERVICE_URL="http://serpenttracker-staging-alb-155647854.us-east-1.elb.amazonaws.com"
   elif [[ "$TRAVIS_BRANCH" == "production" ]]; then
     export DOCKER_ENV=prod
-    # export REACT_APP_USERS_SERVICE_URL="http://testdriven-production-alb-1112328201.us-east-1.elb.amazonaws.com"
+    export REACT_APP_USERS_SERVICE_URL="http://serpenttracker-staging-alb-155647854.us-east-1.elb.amazonaws.com"
     # export DATABASE_URL="$AWS_RDS_URI"
     # export SECRET_KEY="$PRODUCTION_SECRET_KEY"
   fi
@@ -38,7 +38,7 @@ then
     docker tag $SERPENTAPI_DB:$COMMIT $REPO/$SERPENTAPI_DB:$TAG
     docker push $REPO/$SERPENTAPI_DB:$TAG
     # client
-    docker build $CLIENT_REPO -t $CLIENT:$COMMIT -f Dockerfile-$DOCKER_ENV --build-arg REACT_APP_SERPENTAPI_SERVICE_URL=TBD
+    docker build $CLIENT_REPO -t $CLIENT:$COMMIT -f Dockerfile-$DOCKER_ENV --build-arg REACT_APP_SERPENTAPI_SERVICE_URL=$REACT_APP_SERPENTAPI_SERVICE_URL
     docker tag $CLIENT:$COMMIT $REPO/$CLIENT:$TAG
     docker push $REPO/$CLIENT:$TAG
     # swagger
