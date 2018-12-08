@@ -28,7 +28,7 @@ then
     docker tag $SERPENTAPI_DB:$COMMIT $REPO/$SERPENTAPI_DB:$TAG
     docker push $REPO/$SERPENTAPI_DB:$TAG
     # client
-    docker build $CLIENT_REPO -t $CLIENT:$COMMIT -f Dockerfile-$DOCKER_ENV --build-arg REACT_APP_SERPENTAPI_SERVICE_URL=TBD
+    docker build $CLIENT_REPO -t $CLIENT:$COMMIT -f Dockerfile-prod --build-arg REACT_APP_SERPENTAPI_SERVICE_URL=TBD
     docker tag $CLIENT:$COMMIT $REPO/$CLIENT:$TAG
     docker push $REPO/$CLIENT:$TAG
     # swagger
