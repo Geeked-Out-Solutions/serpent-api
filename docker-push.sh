@@ -20,7 +20,7 @@ then
      [ "$TRAVIS_BRANCH" == "production" ]
   then
     # serpentapi
-    docker build $SERPENTAPI_REPO -t $SERPENTAPI:$COMMIT -f Dockerfile-$DOCKER_ENV
+    docker build $SERPENTAPI_REPO -t $SERPENTAPI:$COMMIT -f Dockerfile-prod
     docker tag $SERPENTAPI:$COMMIT $REPO/$SERPENTAPI:$TAG
     docker push $REPO/$SERPENTAPI:$TAG
     # serpentapi db
@@ -32,7 +32,7 @@ then
     docker tag $CLIENT:$COMMIT $REPO/$CLIENT:$TAG
     docker push $REPO/$CLIENT:$TAG
     # swagger
-    docker build $SWAGGER_REPO -t $SWAGGER:$COMMIT -f Dockerfile-$DOCKER_ENV
+    docker build $SWAGGER_REPO -t $SWAGGER:$COMMIT -f Dockerfile-prod
     docker tag $SWAGGER:$COMMIT $REPO/$SWAGGER:$TAG
     docker push $REPO/$SWAGGER:$TAG
   fi
