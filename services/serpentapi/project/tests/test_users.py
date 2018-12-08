@@ -1,4 +1,4 @@
-# services/serpentapi/project/tests/test_users.py
+# services/users/project/tests/test_users.py
 
 
 import json
@@ -11,15 +11,7 @@ from project.tests.utils import add_user
 
 
 class TestUserService(BaseTestCase):
-    """Tests for the Users Service."""
-
-    def test_users(self):
-        """Ensure the /api/ping route behaves correctly."""
-        response = self.client.get('/api/ping')
-        data = json.loads(response.data.decode())
-        self.assertEqual(response.status_code, 200)
-        self.assertIn('pong!', data['message'])
-        self.assertIn('success', data['status'])
+    """Tests for the Users API Endpoint."""
 
     def test_add_user(self):
         """Ensure a new user can be added to the database."""
@@ -39,7 +31,7 @@ class TestUserService(BaseTestCase):
             )
             token = json.loads(resp_login.data.decode())['auth_token']
             response = self.client.post(
-                '/api/users/add',
+                '/api/users',
                 data=json.dumps({
                     'username': 'monty',
                     'email': 'monty@python.org',
@@ -48,6 +40,7 @@ class TestUserService(BaseTestCase):
                 content_type='application/json',
                 headers={'Authorization': f'Bearer {token}'}
             )
+            print(response.data)
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 201)
             self.assertIn('monty@python.org was added!', data['message'])
@@ -71,7 +64,7 @@ class TestUserService(BaseTestCase):
             )
             token = json.loads(resp_login.data.decode())['auth_token']
             response = self.client.post(
-                '/api/users/add',
+                '/api/users',
                 data=json.dumps({}),
                 content_type='application/json',
                 headers={'Authorization': f'Bearer {token}'}
@@ -101,7 +94,7 @@ class TestUserService(BaseTestCase):
             )
             token = json.loads(resp_login.data.decode())['auth_token']
             response = self.client.post(
-                '/api/users/add',
+                '/api/users',
                 data=json.dumps({}),
                 content_type='application/json',
                 headers={'Authorization': f'Bearer {token}'}
@@ -129,7 +122,7 @@ class TestUserService(BaseTestCase):
             )
             token = json.loads(resp_login.data.decode())['auth_token']
             self.client.post(
-                '/api/users/add',
+                '/api/users',
                 data=json.dumps({
                     'username': 'monty',
                     'email': 'monty@python.org',
@@ -139,7 +132,7 @@ class TestUserService(BaseTestCase):
                 headers={'Authorization': f'Bearer {token}'}
             )
             response = self.client.post(
-                '/api/users/add',
+                '/api/users',
                 data=json.dumps({
                     'username': 'monty',
                     'email': 'monty@python.org'
@@ -206,7 +199,7 @@ class TestUserService(BaseTestCase):
     # def test_main_no_users(self):
     #     """Ensure the main route behaves correctly when no users have been
     #     added to the database."""
-    #     response = self.client.get('/')
+    #     response = self.client.get('/api/users')
     #     self.assertEqual(response.status_code, 200)
     #     self.assertIn(b'All Users', response.data)
     #     self.assertIn(b'<p>No users!</p>', response.data)
@@ -217,7 +210,7 @@ class TestUserService(BaseTestCase):
     #     add_user('monty', 'monty@python.org', 'holygrail')
     #     add_user('fletcher', 'fletcher@notreal.com', 'holygrail')
     #     with self.client:
-    #         response = self.client.get('/')
+    #         response = self.client.get('/api/users')
     #         self.assertEqual(response.status_code, 200)
     #         self.assertIn(b'All Users', response.data)
     #         self.assertNotIn(b'<p>No users!</p>', response.data)
@@ -228,7 +221,7 @@ class TestUserService(BaseTestCase):
     #     """Ensure a new user can be added to the database."""
     #     with self.client:
     #         response = self.client.post(
-    #             '/',
+    #             '/api/users/add',
     #             data=dict(
     #                 username='monty',
     #                 email='monty@sonotreal.com',
@@ -262,7 +255,7 @@ class TestUserService(BaseTestCase):
             )
             token = json.loads(resp_login.data.decode())['auth_token']
             response = self.client.post(
-                '/api/users/add',
+                '/api/users',
                 data=json.dumps(dict(
                     username='monty',
                     email='monty@reallynotreal.com')),
@@ -291,7 +284,7 @@ class TestUserService(BaseTestCase):
             )
             token = json.loads(resp_login.data.decode())['auth_token']
             response = self.client.post(
-                '/api/users/add',
+                '/api/users',
                 data=json.dumps({
                     'username': 'monty',
                     'email': 'monty@sonotreal.com',
@@ -319,7 +312,7 @@ class TestUserService(BaseTestCase):
             )
             token = json.loads(resp_login.data.decode())['auth_token']
             response = self.client.post(
-                '/api/users/add',
+                '/api/users',
                 data=json.dumps({
                     'username': 'monty',
                     'email': 'monty@sonotreal.com',
