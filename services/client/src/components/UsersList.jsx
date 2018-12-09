@@ -9,7 +9,6 @@ const UsersList = (props) => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Email</th>
             <th>Username</th>
             <th>Active</th>
             <th>Admin</th>
@@ -21,7 +20,6 @@ const UsersList = (props) => {
               return (
                 <tr key={user.id}>
                   <td>{user.id}</td>
-                  <td>{user.email}</td>
                   <td>{user.username}</td>
                   <td>{String(user.active)}</td>
                   <td>{String(user.admin)}</td>

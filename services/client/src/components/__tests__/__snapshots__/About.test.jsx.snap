@@ -10,7 +10,7 @@ exports[`About renders a snapshot properly 1`] = `
   <hr />
   <br />
   <p>
-    Add something relevant here.
+    About information goes here
   </p>
 </div>
 `;
