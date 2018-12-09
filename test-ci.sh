@@ -22,25 +22,10 @@ dev() {
   docker-compose -f docker-compose-dev.yml down
 }
 
-# run e2e tests
-e2e() {
-  docker-compose -f docker-compose-stage.yml up -d --build
-  docker-compose -f docker-compose-stage.yml run serpentapi python manage.py recreate-db
-  ./node_modules/.bin/cypress run --config baseUrl=http://localhost
-  inspect $? e2e
-  docker-compose -f docker-compose-$1.yml down
-}
-
 # run appropriate tests
 if [[ "${env}" == "development" ]]; then
   echo "Running client and server-side tests!"
   dev
-elif [[ "${env}" == "staging" ]]; then
-  echo "Running e2e tests!"
-  e2e stage
-elif [[ "${env}" == "production" ]]; then
-  echo "Running e2e tests!"
-  e2e prod
 fi
 
 # return proper code
