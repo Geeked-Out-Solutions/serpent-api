@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import UsersList from './components/UsersList';
 import About from './components/About';
+import Home from './components/Home';
+import Features from './components/Features';
 import NavBar from './components/NavBar';
 import Form from './components/forms/Form';
 import Logout from './components/Logout';
@@ -84,12 +86,14 @@ class App extends Component {
               <div className="column is-half">
                 <br/>
                 <Switch>
-                  <Route exact path='/' render={() => (
+                  <Route exact path='/' component={Home}/>
+                  <Route exact path='/users' render={() => (
                     <UsersList
                       users={this.state.users}
                     />
                   )} />
                   <Route exact path='/about' component={About}/>
+                  <Route exact path='/features' component={Features}/>
                   <Route exact path='/register' render={() => (
                     <Form
                       formType={'Register'}
