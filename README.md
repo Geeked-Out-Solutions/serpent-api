@@ -5,6 +5,8 @@
 
 Serpent Tracker api written in Flask db uses Postgres
 
+**Development Topology**
+
 # Dev Setup
 
 ## Environment Variables
