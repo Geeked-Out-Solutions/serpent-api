@@ -6,6 +6,7 @@
 Serpent Tracker api written in Flask db uses Postgres
 
 **Development Topology**
+![Development Topology](https://github.com/Geeked-Out-Solutions/serpent-api/blob/development/serpenttracker-topology.png)
 
 # Dev Setup
 
