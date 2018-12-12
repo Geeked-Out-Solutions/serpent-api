@@ -11,6 +11,15 @@ Serpent Tracker api written in Flask db uses Postgres locally with RDS postgres 
 
 `export REACT_APP_SERPENT_SERVICE_URL=http://localhost`
 
+`docker-compose -f docker-compose-dev.yml up -d --build`
+
+**Test Users**
+User: monty@python.org
+Pw: holygrail
+
+User: vader@starwarz.org
+Pw: lukesfather
+
 ## Start
 Also ensure you are in the local docker machine context by running the following:
 

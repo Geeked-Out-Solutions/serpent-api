@@ -1,0 +1,47 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  namespace: serpent-dev
+  name: deployer
+rules:
+- apiGroups: ["apps","extensions"]
+  resources: ["deployments","configmaps","pods","secrets","ingresses"]
+  verbs: ["create","get","delete","list","update","edit","watch","exec","patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  namespace: serpent-dev
+  name: developer
+rules:
+- apiGroups: ["*"]
+  resources: ["pods", "deployments"]
+  verbs: ["get","describe","list","watch","exec"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: deployer
+  namespace: serpent-dev
+roleRef:
+  kind: Role
+  name: deployer
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  namespace: serpent-dev
+  name: sa-deployer
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: developer
+  namespace: serpent-dev
+roleRef:
+  kind: Role
+  name: developer
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  namespace: serpent-dev
+  name: sa-developer
