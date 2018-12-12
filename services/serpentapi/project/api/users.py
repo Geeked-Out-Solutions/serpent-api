@@ -4,7 +4,7 @@
 from sqlalchemy import exc
 from flask import Blueprint, jsonify, request
 
-from project.api.models import User
+from project.api.models.user import User
 from project import db
 from project.api.utils import authenticate, is_admin
 
