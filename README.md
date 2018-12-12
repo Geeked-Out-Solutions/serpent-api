@@ -3,7 +3,7 @@
 
 [![codecov](https://codecov.io/gh/Geeked-Out-Solutions/serpent-api/branch/development/graph/badge.svg?token=IhB6HiRudp)](https://codecov.io/gh/Geeked-Out-Solutions/serpent-api)
 
-Serpent Tracker api written in Flask db uses Postgres
+Serpent Tracker api written in Flask db uses Postgres locally with RDS postgres for production.
 
 **Development Topology**
 ![Development Topology](https://github.com/Geeked-Out-Solutions/serpent-api/blob/development/serpenttracker-topology.png)
