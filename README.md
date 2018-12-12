@@ -5,9 +5,6 @@
 
 Serpent Tracker api written in Flask db uses Postgres locally with RDS postgres for production.
 
-**Development Topology**
-![Development Topology](https://github.com/Geeked-Out-Solutions/serpent-api/blob/development/serpenttracker-topology.png)
-
 # Dev Setup
 
 ## Environment Variables
@@ -104,7 +101,7 @@ Upgrade - `docker-compose -f docker-compose-dev.yml run serpentapi python manage
 
 2. Setup env variables:
 
-`export REACT_APP_USERS_SERVICE_URL=http://DOCKER_MACHINE_STAGING_IP`
+`export REACT_APP_SERPENT_SERVICE_URL=http://DOCKER_MACHINE_STAGING_IP`
 
 3. Spin up staging:
 
