@@ -105,7 +105,11 @@
           "required": true, 
           "description": "User to add"
         }, 
-        "security": [{"bearerAuth": []}], 
+        "security": [
+          {
+            "bearerAuth": []
+            }
+          ], 
         "responses": {
           "200": {
             "description": "User added"
@@ -121,7 +125,43 @@
         }, 
         "summary": "Returns all users"
       }
-    }
+    },
+    "/api/snake": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/snake"
+              }
+            }
+          }, 
+          "required": true, 
+          "description": "Snake to add"
+        },
+        "security": [{"bearerAuth": []}], 
+        "responses": {
+          "200": {
+            "description": "Snake added"
+          }
+        }, 
+        "summary": "Creates a new snake"
+      },
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+            }
+          ], 
+        "responses": {
+          "200": {
+            "description": "snake object"
+          }
+        },
+         
+        "summary": "Returns all snakes owned by you"
+      }
+    } 
   }, 
   "openapi": "3.0.0", 
   "components": {
@@ -151,6 +191,22 @@
             "type": "string"
           }, 
           "password": {
+            "type": "string"
+          }
+        }
+      },
+      "snake": {
+        "properties": {
+          "name": {
+            "type": "string"
+          }, 
+          "snake_genus": {
+            "type": "string"
+          },
+          "alive": {
+            "type": "boolean"
+          },
+          "description": {
             "type": "string"
           }
         }
