@@ -7,7 +7,8 @@ import unittest
 from flask.cli import FlaskGroup
 
 from project import create_app, db
-from project.api.models import User
+from project.api.models.user import User
+from project.api.models.snake import Snake
 
 
 COV = coverage.coverage(
@@ -62,15 +63,41 @@ def seed_db():
     """Seeds the database."""
     db.session.add(User(
         username='monty',
-        email='monty@reallynotreal.com',
+        email='monty@python.org',
         password='holygrail'
     ))
     db.session.add(User(
         username='vader',
-        email='monty@python.org',
-        password='holygrail'
+        email='vader@starwarz.org',
+        password='lukesfather'
     ))
     db.session.commit()
+
+    snake_1 = {
+        "owner_id": 1,
+        "name": 'sir hiss',
+        "description": 'test description',
+        "snake_genus": 'ball python',
+        "alive": True,
+        "added_date": '2018-04-20T04:20:00.00+00:00',
+        "modified_at": '2018-04-20T04:20:00.00+00:00'
+    }
+
+    snake_2 = {
+        "owner_id": 2,
+        "name": 'hedwig',
+        "description": 'test description',
+        "snake_genus": 'ball python',
+        "alive": True,
+        "added_date": '2018-04-20T04:20:00.00+00:00',
+        "modified_at": '2018-04-20T04:20:00.00+00:00'
+    }
+
+    monty_snake = Snake(snake_1)
+    vader_snake = Snake(snake_2)
+    monty_snake.save()
+    vader_snake.save()
+    
 
 
 if __name__ == '__main__':

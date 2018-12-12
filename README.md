@@ -173,4 +173,3 @@ Ensure port 80 is allowed in the AWS security group for this container via the A
 Get the IP of the machine - `docker-machine ip serpenttracker-prod`
 
 Now visit [http://docker-machine-ip] and see application.
-

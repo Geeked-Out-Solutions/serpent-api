@@ -4,7 +4,7 @@
 from flask import Blueprint, jsonify, request
 from sqlalchemy import exc, or_
 
-from project.api.models import User
+from project.api.models.user import User
 from project import db, bcrypt
 from project.api.utils import authenticate
 
