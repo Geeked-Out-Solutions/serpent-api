@@ -1,7 +1,7 @@
 # serpent-api 
 [![Build Status](https://travis-ci.com/Geeked-Out-Solutions/serpent-api.svg?token=ssEewjrKCrdk2sPPqJTU&branch=master)](https://travis-ci.com/Geeked-Out-Solutions/serpent-api)
 
-[![codecov](https://codecov.io/gh/Geeked-Out-Solutions/serpent-api/branch/master/graph/badge.svg?token=IhB6HiRudp)](https://codecov.io/gh/Geeked-Out-Solutions/serpent-api)
+[![codecov](https://codecov.io/gh/Geeked-Out-Solutions/serpent-api/branch/development/graph/badge.svg?token=IhB6HiRudp)](https://codecov.io/gh/Geeked-Out-Solutions/serpent-api)
 
 Serpent Tracker api written in Flask db uses Postgres
 
