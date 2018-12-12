@@ -1,4 +1,3 @@
-from flask import current_app
 from sqlalchemy.sql import func
 import datetime
 from project import db
@@ -38,7 +37,7 @@ class Snake(db.Model):
             'alive': self.alive,
             'added_date': self.added_date,
             'modified_at': self.modified_at
-            
+
         }
 
     def save(self):
@@ -54,28 +53,28 @@ class Snake(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
-  
+
     @staticmethod
     def get_all_snakes(owner):
         return Snake.query.filter_by(owner_id=owner)
-    
+
     @staticmethod
     def get_one_snake(id):
         return Snake.query.get(id)
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
-        
+
 
 class SnakeSchema(Schema):
-  """
-  Snake Schema
-  """
-  id = fields.Int(dump_only=True)
-  owner_id = fields.Int(required=True)
-  name = fields.Str(required=True)
-  description = fields.Str(required=True)
-  snake_genus = fields.Str(required=True)
-  alive = fields.Boolean(required=True)
-  added_date = fields.DateTime(dump_only=True)
-  modified_at = fields.DateTime(dump_only=True)
+    """
+    Snake Schema
+    """
+    id = fields.Int(dump_only=True)
+    owner_id = fields.Int(required=True)
+    name = fields.Str(required=True)
+    description = fields.Str(required=True)
+    snake_genus = fields.Str(required=True)
+    alive = fields.Boolean(required=True)
+    added_date = fields.DateTime(dump_only=True)
+    modified_at = fields.DateTime(dump_only=True)

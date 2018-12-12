@@ -1,11 +1,7 @@
 
-
-from sqlalchemy import exc
 from flask import Flask, Blueprint, jsonify, request
 from project.api.models.snake import Snake, SnakeSchema
-from project.api.models.user import User
-from project import db
-from project.api.utils import authenticate, is_admin
+from project.api.utils import authenticate
 import logging
 
 snakes_blueprint = Blueprint('snakes', __name__, template_folder='./templates')
@@ -16,12 +12,14 @@ app = Flask(__name__)
 gunicorn_logger = logging.getLogger('gunicorn.error')
 app.logger.handlers = gunicorn_logger.handlers
 
+
 @snakes_blueprint.route('/api/ping', methods=['GET'])
 def ping_pong():
     return jsonify({
         'status': 'success',
         'message': 'pong!'
     })
+
 
 @snakes_blueprint.route('/api/snake', methods=['POST'])
 @authenticate
@@ -45,6 +43,7 @@ def add_snake(resp):
     response_object['status'] = 'success'
     response_object['message'] = 'Successfully added snake.'
     return jsonify(response_object), 201
+
 
 @snakes_blueprint.route('/api/snake', methods=['GET'])
 @authenticate
