@@ -8,6 +8,9 @@ Serpent Tracker api written in Flask db uses Postgres locally with RDS postgres 
 # Documentation
 Full documentation can be found at https://serpent-api.readthedocs.io/en/latest/
 
+# Topology
+![](https://github.com/Geeked-Out-Solutions/serpent-api/blob/development/serpenttracker-topology.png)
+
 # Dev Setup
 
 ## Environment Variables
