@@ -97,7 +97,7 @@ Test it works:
 [http://localhost/api/ping](http://localhost/api/ping)
 
 
-#Development Utils & Commands
+# Development Utils & Commands
 
 ## Database Migrations
 If doing local development for flask and you do database changes in the models the below commands can help like migrate and upgrade to update the db.
