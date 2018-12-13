@@ -1,40 +1,33 @@
 sudo: required
-
 services:
-  - docker
-
+- docker
 env:
   DOCKER_COMPOSE_VERSION: 1.21.1
-  COMMIT: ${TRAVIS_COMMIT::8}
+  COMMIT: "${TRAVIS_COMMIT::8}"
   MAIN_REPO: https://github.com/Geeked-Out-Solutions/serpent-api.git
   SERPENTAPI: serpent-tracker-serpentapi
-  SERPENTAPI_REPO: ${MAIN_REPO}#${TRAVIS_BRANCH}:services/serpentapi
+  SERPENTAPI_REPO: "${MAIN_REPO}#${TRAVIS_BRANCH}:services/serpentapi"
   SERPENTAPI_DB: serpent-tracker-serpentapi_db
-  SERPENTAPI_DB_REPO: ${MAIN_REPO}#${TRAVIS_BRANCH}:services/serpentapi/project/db
+  SERPENTAPI_DB_REPO: "${MAIN_REPO}#${TRAVIS_BRANCH}:services/serpentapi/project/db"
   CLIENT: serpent-tracker-client
-  CLIENT_REPO: ${MAIN_REPO}#${TRAVIS_BRANCH}:services/client
+  CLIENT_REPO: "${MAIN_REPO}#${TRAVIS_BRANCH}:services/client"
   SWAGGER: serpent-tracker-swagger
-  SWAGGER_REPO: ${MAIN_REPO}#${TRAVIS_BRANCH}:services/swagger
+  SWAGGER_REPO: "${MAIN_REPO}#${TRAVIS_BRANCH}:services/swagger"
   SECRET_KEY: serpent_key
-
+  
 before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-
+- sudo rm /usr/local/bin/docker-compose
+- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
+  -s`-`uname -m` > docker-compose
+- chmod +x docker-compose
+- sudo mv docker-compose /usr/local/bin
 before_script:
-  - export REACT_APP_SERPENT_SERVICE_URL=http://127.0.0.1
-  - npm install
-
+- export REACT_APP_SERPENT_SERVICE_URL=http://127.0.0.1
+- npm install
 script:
-  - bash test-ci.sh $TRAVIS_BRANCH
-
+- bash test-ci.sh $TRAVIS_BRANCH
 after_success:
- - curl -s https://codecov.io/bash | bash
- - bash ./docker-push.sh
- - bash ./docker-deploy-stage.sh
- - bash ./docker-deploy-prod.sh
-
+- curl -s https://codecov.io/bash | bash
 notifications:
-  slack: geekedoutsolutions:VYeblffcOzRS3uktrf8HYhfM
+  slack:
+    secure: "RTxDkasQvSQo+E37W7BrU7GEqM5AH8KnZY/nCiMjRqZqbk5HYE6K8irn7ZfeupbeeWSsN+6+p17JImQ8xYC3bniqf1AVi7lUQ2XXdyTvcYyiR8zn1McrOD5Rw0yF+E+F1zn18mGl6o0oKfADfTwo/TmEwIta3fwMycwLzu2kbBA/0QSu+JZZAMWrCrL5GrLC+P8ezj+N5alHRuTX4AU7Ym4QpWWIFlckeJUkvqOeAZ3I2AOQw2RAzKdd/O6kA/7WyBIjRGae3c/JwIbk4fUoxmPxzmQWFa2UEOWjjji7GtfcCuej3mJ8u8ugmlbjLhVYKuWnfjrVgbUKG29n8fGd5hihBbPacyXfhL4D6lgUgRV45b+WniVL0/mlu7Asw7Q4vPw9MoL4q/18AGrl78x4j2pLDT2QwtGmre9hO2G8NSTJutyiY2YHgIup3v5n9R7WmH158nC17AZFZRpXhNYUCHFIbO5cQ3srVGHdYVuh6SNxAUNV8MlKp8kN5DuSW6fPOhwX0wRXuWuqUuHz6a2OH1Gf4CxNzbcryWgl2pIVcIyLuGZcOEgKk4TgOqZhsFPOcjDS10vURGFDp9oVcY7Omsy+wLBRHe9P3Ofgq6trAiFyw0JFkZjYQEmPTZ5GTegTgErHDsQusZyqSAUo2IO7wzaOdALqNpz8X6YyEiaGDQg="

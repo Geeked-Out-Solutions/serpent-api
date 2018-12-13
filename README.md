@@ -5,11 +5,45 @@
 
 Serpent Tracker api written in Flask db uses Postgres locally with RDS postgres for production.
 
+Table of Contents
+=================
+
+   * [Documentation](#documentation)
+   * [Topology](#topology)
+   * [Dev Setup](#dev-setup)
+      * [Environment Variables](#environment-variables)
+      * [Start](#start)
+      * [Testing](#testing)
+      * [Stopping](#stopping)
+   * [Development Utils &amp; Commands](#development-utils--commands)
+      * [Database Migrations](#database-migrations)
+   * [Staging Setup](#staging-setup)
+   * [Prod Setup](#prod-setup)
+      * [Setup Docker Instance](#setup-docker-instance)
+      * [Setup ENV Variables](#setup-env-variables)
+      * [Start Up Docker Container](#start-up-docker-container)
+
+# Documentation
+Full documentation can be found at https://serpent-api.readthedocs.io/en/latest/
+
+# Topology
+![](https://github.com/Geeked-Out-Solutions/serpent-api/blob/development/serpenttracker-topology.png)
+
 # Dev Setup
 
 ## Environment Variables
 
 `export REACT_APP_SERPENT_SERVICE_URL=http://localhost`
+
+`docker-compose -f docker-compose-dev.yml up -d --build`
+
+**Test Users**
+
+User: monty@python.org
+Pw: holygrail
+
+User: vader@starwarz.org
+Pw: lukesfather
 
 ## Start
 Also ensure you are in the local docker machine context by running the following:
@@ -27,6 +61,17 @@ Also ensure you are in the local docker machine context by running the following
 **Run Containers**
 
 `docker-compose -f docker-compose-dev.yml up -d`
+
+**API Routes**
+These are the routes that should now be available that you have the application up.
+
+http://localhost - React Client
+
+http://localhost/swagger - Swagger Documentation
+
+http://localhost/api - Flask API Routes
+
+http://localhost/api/ping - Verify API is up.
 
 **Create & Seed Database**
 
@@ -82,7 +127,7 @@ Test it works:
 [http://localhost/api/ping](http://localhost/api/ping)
 
 
-#Development Utils & Commands
+# Development Utils & Commands
 
 ## Database Migrations
 If doing local development for flask and you do database changes in the models the below commands can help like migrate and upgrade to update the db.
