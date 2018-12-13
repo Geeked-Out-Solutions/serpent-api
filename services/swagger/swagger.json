@@ -213,5 +213,5 @@
         }
       }
     }, 
-    "servers": [{"url": "http://localhost"}]}
+    "servers": [{"url": "https://staging.serpent-tracker.com"}]}
   
