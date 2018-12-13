@@ -38,6 +38,7 @@ Full documentation can be found at https://serpent-api.readthedocs.io/en/latest/
 `docker-compose -f docker-compose-dev.yml up -d --build`
 
 **Test Users**
+
 User: monty@python.org
 Pw: holygrail
 
@@ -60,6 +61,17 @@ Also ensure you are in the local docker machine context by running the following
 **Run Containers**
 
 `docker-compose -f docker-compose-dev.yml up -d`
+
+**API Routes**
+These are the routes that should now be available that you have the application up.
+
+http://localhost - React Client
+
+http://localhost/swagger - Swagger Documentation
+
+http://localhost/api - Flask API Routes
+
+http://localhost/api/ping - Verify API is up.
 
 **Create & Seed Database**
 
